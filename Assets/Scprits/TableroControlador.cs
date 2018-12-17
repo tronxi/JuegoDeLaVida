@@ -15,12 +15,10 @@ public class TableroControlador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //this.transform.position = new Vector3(FILAS / 2, COLUMNAS / 2, 0);
         modelo = new Modelo();
         CrearTablero();
         camara.transform.position = new Vector3(FILAS / 2, FILAS / 2, -130);
         InvokeRepeating("Jugar", 0f, 0.25f);
-        //Jugar();
     }
 
     // Update is called once per frame
@@ -32,7 +30,7 @@ public class TableroControlador : MonoBehaviour
     private void Jugar()
     {
         modelo.jugar();
-        //Debug.Log(modelo.dibujar());
+        modelo.actualizarEstado();
     }
 
     private void CrearTablero()
@@ -98,7 +96,7 @@ public class TableroControlador : MonoBehaviour
             }
         }
 
-        private void actualizarEstado()
+        public void actualizarEstado()
         {
             for(int i = 0; i < FILAS; i++)
             {
@@ -114,7 +112,7 @@ public class TableroControlador : MonoBehaviour
             return estado[x, y];
         }
 
-        public bool jugar()
+        public void jugar()
         {
             for(int i = 0; i <FILAS; i++)
             {
@@ -135,8 +133,6 @@ public class TableroControlador : MonoBehaviour
                     }
                 }
             }
-            actualizarEstado();
-            return true;
         }
 
         public string dibujar()
